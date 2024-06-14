@@ -30,7 +30,7 @@ public class Maze{
         return startPosition;
     }
 
-    public Position getEndPosition(){
+    public Position getGoalPosition(){
         return endPosition;
     }
 
@@ -47,7 +47,7 @@ public class Maze{
 
 
 
-    public Position makeEndPosition() {
+    public Position makeGoalPosition() {
         if (endPosition == null && rows > 0 && columns > 0) {
             boolean flag = true;
             Position endPos = chooseRandomly();
