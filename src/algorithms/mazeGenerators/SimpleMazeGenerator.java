@@ -17,32 +17,32 @@ public class SimpleMazeGenerator extends AMazeGenerator {
 
         maze.setMazeArray(newMazeArr);
 
-        //choosing random start point
+        //choosing random start and end point
         maze.makeStartPosition();
-        maze.makeEndPosition();
+        maze.makeGoalPosition();
         makingAPath(maze);
         return maze;
     }
 
     private void makingAPath(Maze maze){
-        int rowDifference = maze.getStartPosition().getRowIndex()-maze.getEndPosition().getRowIndex();
-        int colDifference = maze.getStartPosition().getColumnIndex()-maze.getEndPosition().getColumnIndex();
+        int rowDifference = maze.getStartPosition().getRowIndex()-maze.getGoalPosition().getRowIndex();
+        int colDifference = maze.getStartPosition().getColumnIndex()-maze.getGoalPosition().getColumnIndex();
 
         if(rowDifference < 0){
-            for (int i = maze.getStartPosition().getRowIndex() ; i <= maze.getEndPosition().getRowIndex() ; i++){
+            for (int i = maze.getStartPosition().getRowIndex() ; i <= maze.getGoalPosition().getRowIndex() ; i++){
                 maze.setMazeArray(i, maze.getStartPosition().getColumnIndex(), 0);
             }
         }else{
-            for (int i=maze.getEndPosition().getRowIndex() ;i<=maze.getStartPosition().getRowIndex() ; i++){
-                maze.setMazeArray(i, maze.getEndPosition().getColumnIndex(), 0);
+            for (int i=maze.getGoalPosition().getRowIndex() ;i<=maze.getStartPosition().getRowIndex() ; i++){
+                maze.setMazeArray(i, maze.getGoalPosition().getColumnIndex(), 0);
             }
         }
         if(colDifference<0) {
-            for (int i = maze.getStartPosition().getColumnIndex(); i <= maze.getEndPosition().getColumnIndex(); i++) {
-                maze.setMazeArray(maze.getEndPosition().getRowIndex() ,i, 0);
+            for (int i = maze.getStartPosition().getColumnIndex(); i <= maze.getGoalPosition().getColumnIndex(); i++) {
+                maze.setMazeArray(maze.getGoalPosition().getRowIndex() ,i, 0);
             }
         }else{
-            for (int i=maze.getEndPosition().getColumnIndex();i<=maze.getStartPosition().getColumnIndex();i++){
+            for (int i=maze.getGoalPosition().getColumnIndex();i<=maze.getStartPosition().getColumnIndex();i++){
                 maze.setMazeArray(maze.getStartPosition().getRowIndex() ,i, 0);
             }
         }
