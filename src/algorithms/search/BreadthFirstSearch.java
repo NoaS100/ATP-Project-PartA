@@ -20,9 +20,9 @@ public class BreadthFirstSearch extends ASearchingAlgorithm{
         stateQueue.addAll(allSuccessors);
         while(!stateQueue.isEmpty()){
             AState state = stateQueue.poll();
-            if(state.getState().equals(problem.getGoalState().getState()))
+            if(state.isSameState(problem.getGoalState()))
                 return new Solution(state);
-            if (this.minCostState.get(state.getState()) == null) {
+            if (ifVisited(state)) {
                 stateQueue.addAll(problem.getAllSuccessors(state));
                 this.minCostState.put(state.getState(), state);
             }
@@ -33,5 +33,9 @@ public class BreadthFirstSearch extends ASearchingAlgorithm{
     @Override
     public int getNumberOfNodesEvaluated() {
         return minCostState.size();
+    }
+
+    public boolean ifVisited(AState state){
+        return this.minCostState.get(state.getState()) == null;
     }
 }

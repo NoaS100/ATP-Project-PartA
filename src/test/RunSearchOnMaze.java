@@ -10,8 +10,9 @@ import java.util.ArrayList;
 public class RunSearchOnMaze {
     public static void main(String[] args) {
         IMazeGenerator mg = new MyMazeGenerator();
-        System.out.println("Trying 1000 on 1000");
-        Maze maze = mg.generate(1000, 1000);
+        System.out.println("Trying 10 on 10");
+        Maze maze = mg.generate(10, 10);
+        maze.print();
         SearchableMaze searchableMaze = new SearchableMaze(maze);
         solveProblem(searchableMaze, new BreadthFirstSearch());
         solveProblem(searchableMaze, new DepthFirstSearch());
@@ -32,7 +33,7 @@ public class RunSearchOnMaze {
         double timeTookInMS = (double) (endTime - startTime) / 1_000_000;
         System.out.println(String.format("'%s' algorithm - nodes evaluated: %s, time took: %s ms", searcher.getName(), searcher.getNumberOfNodesEvaluated(), timeTookInMS));
         System.out.println(String.format("Solution Cost: %s", solution.getFinalState().getCost()));
-        //                System.out.println("Solution path:");
+//                        System.out.println("Solution path:");
 //        ArrayList<AState> solutionPath = solution.getSolutionPath();
 //        for (int i = 0; i < solutionPath.size(); i++) {
 //            System.out.println(String.format("%s.%s",i,solutionPath.get(i)));

@@ -19,7 +19,7 @@ public class DepthFirstSearch extends ASearchingAlgorithm{
         while(!stateStack.isEmpty()){
 
             AState currState = stateStack.pop();
-            if (currState.getState().equals(problem.getGoalState().getState()))
+            if (currState.isSameState(problem.getGoalState()))
                 return new Solution(currState);
 
             visitedStates.add(currState.getState());

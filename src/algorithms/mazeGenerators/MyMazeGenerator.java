@@ -95,7 +95,9 @@ public class MyMazeGenerator extends AMazeGenerator {
     public Maze generate(int rows, int columns) {
         Maze maze = new Maze(rows, columns);
         maze.makeStartPosition();
+        Position startPosition = maze.getStartPosition();
         maze.makeGoalPosition();
+        Position goalPosition = maze.getGoalPosition();
         this.random = new Random();
 
         // Initialize maze with walls
@@ -107,7 +109,8 @@ public class MyMazeGenerator extends AMazeGenerator {
 
         // Generate maze
         generateMaze(maze.getStartPosition().getRowIndex(), maze.getStartPosition().getColumnIndex(), maze);
-
+        maze.getMazeArray()[startPosition.getRowIndex()][startPosition.getColumnIndex()] = 0;
+        maze.getMazeArray()[goalPosition.getRowIndex()][goalPosition.getColumnIndex()] = 0;
         return maze;
     }
 

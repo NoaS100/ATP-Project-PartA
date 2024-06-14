@@ -39,15 +39,13 @@ public class SearchableMaze implements ISearchable {
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
                 Position currPos = new Position((position.getRowIndex() + i), (position.getColumnIndex() + j));
-                if (!currPos.equals(cameFrom)) {
-                    if (maze.checkPosition(currPos)) {
-                        if ((i * i) + (j * j) == 2) { // corner -> check if there's a diagonal
-                            if (maze.checkPosition((position.getRowIndex() + i), (position.getColumnIndex())) ||
-                                    maze.checkPosition((position.getRowIndex()), (position.getColumnIndex() + j)))
-                                res.add(new MazeState(currPos, state, state.getCost() + 15));
-                        } else if ((i * i) + (j * j) == 1) { // not a corner and not self (0,0)
-                            res.add(new MazeState(currPos, state, state.getCost() + 10));
-                        }
+                if (!currPos.equals(cameFrom) && maze.checkPosition(currPos)) {
+                    if ((i * i) + (j * j) == 2) { // corner -> check if there's a diagonal
+                        if (maze.checkPosition((position.getRowIndex() + i), (position.getColumnIndex())) ||
+                                maze.checkPosition((position.getRowIndex()), (position.getColumnIndex() + j)))
+                            res.add(new MazeState(currPos, state, state.getCost() + 15));
+                    } else if ((i * i) + (j * j) == 1) { // not a corner and not self (0,0)
+                        res.add(new MazeState(currPos, state, state.getCost() + 10));
                     }
                 }
             }
