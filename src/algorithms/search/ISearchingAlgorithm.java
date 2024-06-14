@@ -4,5 +4,7 @@ public interface ISearchingAlgorithm {
 
     Solution solve(ISearchable problem);
 
-    int getNumberOfVisitedNodes();
+    int getNumberOfNodesEvaluated();
+
+    String getName();
 }

@@ -14,7 +14,12 @@ public abstract class ASearchingAlgorithm implements ISearchingAlgorithm{
     }
 
     @Override
-    public int getNumberOfVisitedNodes() {
+    public int getNumberOfNodesEvaluated() {
         return 0;
+    }
+
+    @Override
+    public String getName() {
+        return this.getClass().toString();
     }
 }

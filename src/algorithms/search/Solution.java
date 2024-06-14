@@ -20,4 +20,7 @@ public class Solution{
         return res;
     }
 
+    public AState getFinalState() {
+        return finalState;
+    }
 }

@@ -6,9 +6,8 @@ public class DepthFirstSearch extends ASearchingAlgorithm{
 
     protected HashSet<String> visitedStates;
 
-    public DepthFirstSearch(HashSet<String> visitedStates) {
-        super();
-        this.visitedStates = visitedStates;
+    public DepthFirstSearch() {
+        this.visitedStates = new HashSet<>();
     }
 
     @Override
@@ -20,13 +19,13 @@ public class DepthFirstSearch extends ASearchingAlgorithm{
         while(!stateStack.isEmpty()){
 
             AState currState = stateStack.pop();
-            if (currState == problem.getGoalState())
+            if (currState.getState().equals(problem.getGoalState().getState()))
                 return new Solution(currState);
 
             visitedStates.add(currState.getState());
 
             for (AState state: problem.getAllSuccessors(currState)) {
-                if (!visitedStates.contains(state))
+                if (!visitedStates.contains(state.getState()))
                     stateStack.push(state);
             }
         }
@@ -35,7 +34,7 @@ public class DepthFirstSearch extends ASearchingAlgorithm{
     }
 
     @Override
-    public int getNumberOfVisitedNodes() {
+    public int getNumberOfNodesEvaluated() {
         return visitedStates.size();
     }
 }

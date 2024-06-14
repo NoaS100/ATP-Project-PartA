@@ -6,7 +6,7 @@ import algorithms.search.Solution;
 
 public class Main {
     public static void main(String[] args) {
-        Maze maze = new Maze();
+        Maze maze = new Maze(4, 4);
         SearchableMaze searchableMaze = new SearchableMaze(maze);
 
         ASearchingAlgorithm searchingAlgorithm = new BreadthFirstSearch();

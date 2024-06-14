@@ -51,4 +51,11 @@ public abstract class AState implements Comparable<AState> {
             return -1;
         return 0;
     }
+
+    @Override
+    public String toString() {
+        return "AState{" +
+                "state='" + state + '\'' +
+                '}';
+    }
 }
