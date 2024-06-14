@@ -83,6 +83,7 @@ package algorithms.mazeGenerators;
 
 import java.util.*;
 
+
 public class MyMazeGenerator extends AMazeGenerator {
 
     private static final int WALL = 1;
