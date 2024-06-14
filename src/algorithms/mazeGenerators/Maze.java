@@ -10,7 +10,7 @@ public class Maze{
     private int[][] mazeArray;
     private int rows, columns;
 
-    Maze(int rows, int columns) {
+    public Maze(int rows, int columns) {
         this.startPosition = null;
         this.endPosition = null;
         this.mazeArray = new int[rows][columns];
@@ -34,11 +34,10 @@ public class Maze{
         return endPosition;
     }
 
-    public Position makeStartPosition() {
+    public void makeStartPosition() {
         if (startPosition == null && rows > 0 && columns > 0) {
             startPosition = chooseRandomly();
         }
-        return startPosition;
     }
 
     public void setStartPosition(Position position) {
@@ -47,7 +46,7 @@ public class Maze{
 
 
 
-    public Position makeGoalPosition() {
+    public void makeGoalPosition() {
         if (endPosition == null && rows > 0 && columns > 0) {
             boolean flag = true;
             Position endPos = chooseRandomly();
@@ -64,7 +63,6 @@ public class Maze{
             }
             endPosition = endPos;
         }
-        return endPosition;
     }
 
     public void setEndPosition(Position position) {
@@ -99,7 +97,7 @@ public class Maze{
             randomlyPos.setColumnIndex(random.nextInt(columns));
         }
         if (cases == 2){//first column
-            randomlyPos.setRowIndex(random.nextInt(rows)); //first column
+            randomlyPos.setRowIndex(random.nextInt(rows));
             randomlyPos.setColumnIndex(0);
         }
         if (cases == 3){ //last column
