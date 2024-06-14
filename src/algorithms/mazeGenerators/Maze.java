@@ -3,6 +3,7 @@ package algorithms.mazeGenerators;
 import java.util.Random;
 import java.util.Arrays;
 
+
 public class Maze {
 
 
@@ -18,6 +19,7 @@ public class Maze {
         this.rows = rows;
         this.columns = columns;
     }
+
 
     public int getRows() {
         return rows;
@@ -83,9 +85,11 @@ public class Maze {
     }
 
 
+
     public Position chooseRandomly() {
         Random random = new Random();
         int cases = random.nextInt(4);
+
         Position randomlyPos = new Position(random.nextInt(rows), random.nextInt(columns));
 
         if (cases == 0) {//first row
@@ -93,6 +97,7 @@ public class Maze {
             randomlyPos.setColumnIndex(random.nextInt(columns));
         }
         if (cases == 1) {//last row
+
             randomlyPos.setRowIndex(rows - 1);
             randomlyPos.setColumnIndex(random.nextInt(columns));
         }
@@ -129,6 +134,7 @@ public class Maze {
                     charMazeArr[i][j] = (char) ('0' + mazeArray[i][j]);
                 }
             }
+
 //            System.out.println("E  =" + charMazeArr[endPosition.getRowIndex()][endPosition.getColumnIndex()]);
 //            System.out.println("S  =" + charMazeArr[startPosition.getRowIndex()][startPosition.getColumnIndex()]);
             charMazeArr[endPosition.getRowIndex()][endPosition.getColumnIndex()] = 'E';
@@ -136,6 +142,7 @@ public class Maze {
             for (int i = 0; i < rows; i++) {
                 System.out.println(Arrays.toString(charMazeArr[i]));
             }
+
         }
     }
 }

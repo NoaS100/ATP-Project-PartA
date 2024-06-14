@@ -1,5 +1,6 @@
 package algorithms.mazeGenerators;
 
+
 import java.util.Objects;
 
 public class Position {
@@ -54,5 +55,6 @@ public class Position {
     public int hashCode() {
         return Objects.hash(rowIndex, columnIndex);
     }
+
 }
 

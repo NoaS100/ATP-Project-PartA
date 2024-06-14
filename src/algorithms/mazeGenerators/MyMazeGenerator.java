@@ -83,7 +83,6 @@ package algorithms.mazeGenerators;
 
 import java.util.*;
 
-
 public class MyMazeGenerator extends AMazeGenerator {
 
     private static final int WALL = 1;
@@ -99,6 +98,7 @@ public class MyMazeGenerator extends AMazeGenerator {
         Position startPosition = maze.getStartPosition();
         maze.makeGoalPosition();
         Position goalPosition = maze.getGoalPosition();
+
         this.random = new Random();
 
         // Initialize maze with walls
@@ -110,8 +110,10 @@ public class MyMazeGenerator extends AMazeGenerator {
 
         // Generate maze
         generateMaze(maze.getStartPosition().getRowIndex(), maze.getStartPosition().getColumnIndex(), maze);
+
         maze.getMazeArray()[startPosition.getRowIndex()][startPosition.getColumnIndex()] = 0;
         maze.getMazeArray()[goalPosition.getRowIndex()][goalPosition.getColumnIndex()] = 0;
+
         return maze;
     }
 
