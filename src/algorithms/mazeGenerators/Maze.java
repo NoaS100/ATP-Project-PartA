@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 public class Maze {
 
+
     private Position startPosition;
     private Position endPosition;
     private int[][] mazeArray;
