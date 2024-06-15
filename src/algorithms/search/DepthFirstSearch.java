@@ -4,18 +4,17 @@ import java.util.*;
 
 public class DepthFirstSearch extends ASearchingAlgorithm{
 
-    protected HashSet<String> visitedStates;
-
     public DepthFirstSearch() {
-        this.visitedStates = new HashSet<>();
+        super();
     }
 
     @Override
     public Solution solve(ISearchable problem) {
-        this.visitedStates.clear();
         Stack<AState> stateStack = new Stack<>();
+        this.numberOfNodesEvaluated = 0;
 
         stateStack.push(problem.getStartState());
+        numberOfNodesEvaluated++;
 
         while(!stateStack.isEmpty()){
 
@@ -23,19 +22,16 @@ public class DepthFirstSearch extends ASearchingAlgorithm{
             if (currState.isSameState(problem.getGoalState()))
                 return new Solution(currState);
 
-            visitedStates.add(currState.getState());
-
             for (AState state: problem.getAllSuccessors(currState)) {
-                if (!visitedStates.contains(state.getState()))
-                    stateStack.push(state);
+                numberOfNodesEvaluated++;
+                stateStack.push(state);
             }
         }
-
         return null;
     }
 
     @Override
     public int getNumberOfNodesEvaluated() {
-        return visitedStates.size();
+        return numberOfNodesEvaluated;
     }
 }

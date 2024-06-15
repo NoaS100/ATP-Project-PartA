@@ -3,40 +3,33 @@ package algorithms.search;
 import java.util.*;
 
 public class BreadthFirstSearch extends ASearchingAlgorithm{
-    protected HashSet<String> visitedStates;
+//    protected HashSet<String> visitedStates;
     protected Queue<AState> stateQueue;
 
     public BreadthFirstSearch() {
-        this.visitedStates = new HashSet<>();
+//        this.visitedStates = new HashSet<>();
         this.stateQueue = new LinkedList<>();
     }
 
     @Override
     public Solution solve(ISearchable problem) {
-        this.visitedStates.clear();
+//        this.visitedStates.clear();
         stateQueue.clear();
+        this.numberOfNodesEvaluated = 0;
 
         ArrayList<AState> allSuccessors = problem.getAllSuccessors(problem.getStartState());
         stateQueue.addAll(allSuccessors);
+        this.numberOfNodesEvaluated += allSuccessors.size();
         while(!stateQueue.isEmpty()){
             AState state = stateQueue.poll();
             if(state.isSameState(problem.getGoalState()))
                 return new Solution(state);
-            if (!this.visitedStates.contains(state.getState())) {
-                stateQueue.addAll(problem.getAllSuccessors(state));
-                this.visitedStates.add(state.getState());
-            }
-        }
+            ArrayList<AState> temp = problem.getAllSuccessors(state);
+            stateQueue.addAll(temp);
+            this.numberOfNodesEvaluated += temp.size();
+       }
         return null;
     }
 
-    @Override
-    public int getNumberOfNodesEvaluated() {
-        return visitedStates.size();
-    }
 
-
-//    public boolean ifVisited(AState state){
-//        return this.minCostState.get(state.getState()) == null;
-//    }
 }

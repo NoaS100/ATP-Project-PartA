@@ -10,14 +10,14 @@ import java.util.ArrayList;
 public class RunSearchOnMaze {
     public static void main(String[] args) {
         IMazeGenerator mg = new MyMazeGenerator();
-//        System.out.println("Trying 10 on 10");
-//        Maze maze = mg.generate(10, 10);
-//        maze.print();
+//        System.out.println("Trying 100 on 100");
+//        Maze maze = mg.generate(100, 100);
+////        maze.print();
 //        SearchableMaze searchableMaze = new SearchableMaze(maze);
 //        solveProblem(searchableMaze, new BreadthFirstSearch());
 //        solveProblem(searchableMaze, new DepthFirstSearch());
 //        solveProblem(searchableMaze, new BestFirstSearch());
-//
+////
 //        System.out.println("Trying 500 on 500");
 //        maze = mg.generate(500, 500);
 //        searchableMaze = new SearchableMaze(maze);
@@ -43,10 +43,12 @@ public class RunSearchOnMaze {
 //        for (int i = 0; i < solutionPath.size(); i++) {
 //            System.out.println(String.format("%s.%s",i,solutionPath.get(i)));
 //        }
+//        return res;
     }
 
     private static void testAlgorithmsOnMultipleMazes(IMazeGenerator mg, int rows, int columns, int numMazes) {
         ISearchingAlgorithm[] algorithms = {new BreadthFirstSearch(), new DepthFirstSearch(), new BestFirstSearch()};
+//        ISearchingAlgorithm[] algorithms = {new DepthFirstSearch()};
         long[] totalTimes = new long[algorithms.length];
         long[] nodesVisit = new long[algorithms.length];
         long[] totalCost = new long[algorithms.length];

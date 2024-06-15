@@ -5,8 +5,9 @@ import java.util.Hashtable;
 
 public abstract class ASearchingAlgorithm implements ISearchingAlgorithm{
 
-
+    protected int numberOfNodesEvaluated;
     public ASearchingAlgorithm(){
+        numberOfNodesEvaluated = 0;
     }
     @Override
     public Solution solve(ISearchable problem) {
@@ -15,7 +16,7 @@ public abstract class ASearchingAlgorithm implements ISearchingAlgorithm{
 
     @Override
     public int getNumberOfNodesEvaluated() {
-        return 0;
+        return this.numberOfNodesEvaluated;
     }
 
     @Override
