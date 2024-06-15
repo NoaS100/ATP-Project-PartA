@@ -95,7 +95,6 @@ public class MyMazeGenerator extends AMazeGenerator {
     public Maze generate(int rows, int columns) {
         Maze maze = new Maze(rows, columns);
         maze.makeStartPosition();
-        maze.makeGoalPosition();
         this.random = new Random();
 
         // Initialize maze with walls
@@ -108,48 +107,59 @@ public class MyMazeGenerator extends AMazeGenerator {
         // Generate maze
         generateMaze(maze.getStartPosition().getRowIndex(), maze.getStartPosition().getColumnIndex(), maze);
 
+        maze.makeGoalPosition();
         return maze;
     }
 
     private void generateMaze(int startRow, int startCol, Maze maze) {
-        PriorityQueue<Position> frontier = new PriorityQueue<>(Comparator.comparingInt(pos -> random.nextInt()));
+        Position curr;
+        int count; //counting the visited neighbors for current cell
+
+        //frontiers list , candidates to be selected as the next cell in the maze.
+        List<Position> frontier= new ArrayList<>();
         frontier.add(new Position(startRow, startCol));
 
-        maze.setMazeArray(startRow, startCol, EMPTY);
-
         while (!frontier.isEmpty()) {
-            Position current = frontier.poll();
-            int x = current.getRowIndex();
-            int y = current.getColumnIndex();
+            curr=frontier.remove(random.nextInt(frontier.size()));
+            count=neighborsVisited(maze,curr);
 
-            List<Position> neighbors = getNeighbors(x, y, maze);
-            if (!neighbors.isEmpty()) {
-                Position next = neighbors.get(random.nextInt(neighbors.size()));
-                int nx = next.getRowIndex();
-                int ny = next.getColumnIndex();
-
-                maze.setMazeArray(nx, ny, EMPTY);
-                maze.setMazeArray((x + nx) / 2, (y + ny) / 2, EMPTY); // Remove wall between cells
-
-                frontier.add(next);
+            if(count<=1){
+                maze.setMazeArray(curr.getRowIndex(), curr.getColumnIndex(), EMPTY);
+                //down
+                addValidPath(curr.getRowIndex()+1, curr.getColumnIndex(), maze,frontier);
+                //up
+                addValidPath(curr.getRowIndex()-1, curr.getColumnIndex(), maze,frontier);
+                //left
+                addValidPath(curr.getRowIndex(), curr.getColumnIndex()-1, maze,frontier);
+                //right
+                addValidPath(curr.getRowIndex(), curr.getColumnIndex()+1, maze,frontier);
             }
         }
+
     }
 
-    private List<Position> getNeighbors(int x, int y, Maze maze) {
-        List<Position> neighbors = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
-            int nx = x + DX[i] * 2;
-            int ny = y + DY[i] * 2;
-            if (nx >= 0 && ny >= 0 && nx < maze.getRows() && ny < maze.getColumns() && maze.getMazeArray()[nx][ny] == WALL) {
-                neighbors.add(new Position(nx, ny));
-            }
+
+    //return the count of visited neighbors for a cell
+    private int neighborsVisited(Maze maze, Position curr){
+        int Ncount=0;
+        //down
+        if(curr.getRowIndex()+1< maze.getRows() && maze.getMazeArray()[curr.getRowIndex()+1][curr.getColumnIndex()]==0)
+            Ncount++;
+        //up
+        if(curr.getRowIndex()-1>=0 && maze.getMazeArray()[curr.getRowIndex()-1][curr.getColumnIndex()]==0)
+            Ncount++;
+        //right
+        if(curr.getColumnIndex()+1<maze.getColumns() && maze.getMazeArray()[curr.getRowIndex()][curr.getColumnIndex()+1]==0)
+            Ncount++;
+        //left
+        if(curr.getColumnIndex()-1>=0 && maze.getMazeArray()[curr.getRowIndex()][curr.getColumnIndex()-1]==0)
+            Ncount++;
+        return Ncount;}
+
+    private void addValidPath(int x, int y, Maze maze, List<Position> frontiers) {
+        if (x >= 0 && x < maze.getRows() && y >= 0 && y < maze.getColumns() && maze.getMazeArray()[x][y] == WALL){
+            frontiers.add(new Position(x, y));
         }
-        return neighbors;
-    }
-
-    private boolean canCarvePath(int x, int y, Maze maze) {
-        return x >= 0 && x < maze.getRows() && y >= 0 && y < maze.getColumns() && maze.getMazeArray()[x][y] == WALL;
     }
 }
 
