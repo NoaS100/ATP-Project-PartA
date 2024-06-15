@@ -135,8 +135,8 @@ public class Maze {
                 }
             }
 
-//            System.out.println("E  =" + charMazeArr[endPosition.getRowIndex()][endPosition.getColumnIndex()]);
-//            System.out.println("S  =" + charMazeArr[startPosition.getRowIndex()][startPosition.getColumnIndex()]);
+            System.out.println("E  =" + charMazeArr[endPosition.getRowIndex()][endPosition.getColumnIndex()]);
+            System.out.println("S  =" + charMazeArr[startPosition.getRowIndex()][startPosition.getColumnIndex()]);
             charMazeArr[endPosition.getRowIndex()][endPosition.getColumnIndex()] = 'E';
             charMazeArr[startPosition.getRowIndex()][startPosition.getColumnIndex()] = 'S';
             for (int i = 0; i < rows; i++) {

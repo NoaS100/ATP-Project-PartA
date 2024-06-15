@@ -7,9 +7,10 @@ public class BestFirstSearch extends BreadthFirstSearch{
         this.stateQueue = new PriorityQueue<>();
     }
 
-    public boolean ifVisited(AState state){
-        AState temp = minCostState.get(state.getState());
-        return temp == null || (temp != null &&temp.getCost() > state.getCost());
-    }
+//    @Override
+//    public boolean ifVisited(AState state){
+//        AState temp = minCostState.get(state.getState());
+//        return temp == null || temp.getCost() > state.getCost();
+//    }
 
 }
