@@ -134,9 +134,6 @@ public class Maze {
                     charMazeArr[i][j] = (char) ('0' + mazeArray[i][j]);
                 }
             }
-
-//            System.out.println("E  =" + charMazeArr[endPosition.getRowIndex()][endPosition.getColumnIndex()]);
-//            System.out.println("S  =" + charMazeArr[startPosition.getRowIndex()][startPosition.getColumnIndex()]);
             charMazeArr[endPosition.getRowIndex()][endPosition.getColumnIndex()] = 'E';
             charMazeArr[startPosition.getRowIndex()][startPosition.getColumnIndex()] = 'S';
             for (int i = 0; i < rows; i++) {
