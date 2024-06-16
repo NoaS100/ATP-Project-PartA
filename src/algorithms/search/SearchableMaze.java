@@ -69,7 +69,7 @@ public class SearchableMaze implements ISearchable {
             for (int j = -1; j < 2; j++) {
                 Position currPos = new Position((position.getRowIndex() + i), (position.getColumnIndex() + j));
                 if (maze.checkPosition(currPos) && !visitedMaze[currPos.getRowIndex()][currPos.getColumnIndex()]) {
-                    // currPosition is a valid position in maze and not a 1 and was not visited before.
+                    // currPosition is a valid position in maze and not a 1 and was not visited be fore.
                     if ((i * i) + (j * j) == 2) { // corner -> check if there's a diagonal
                         if (maze.checkPosition((position.getRowIndex() + i), (position.getColumnIndex())) ||
                                 maze.checkPosition((position.getRowIndex()), (position.getColumnIndex() + j))) {

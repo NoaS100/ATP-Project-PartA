@@ -36,7 +36,6 @@ public class DepthFirstSearch extends ASearchingAlgorithm{
             }
 
         }
-        int x = 3;
         return null; // there is no solution -> return null
     }
 

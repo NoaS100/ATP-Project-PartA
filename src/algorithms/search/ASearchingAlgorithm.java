@@ -36,6 +36,6 @@ public abstract class ASearchingAlgorithm implements ISearchingAlgorithm{
      */
     @Override
     public String getName() {
-        return this.getClass().toString();
+        return this.getClass().getSimpleName();
     }
 }

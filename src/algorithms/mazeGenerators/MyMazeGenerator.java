@@ -16,10 +16,11 @@ public class MyMazeGenerator extends AMazeGenerator {
      */
     @Override
     public Maze generate(int rows, int columns) {
+        if(rows < 1 || columns < 1)
+            return null;
         Maze maze = new Maze(rows, columns);
         maze.makeStartPosition();
         this.random = new Random();
-
         // Initialize maze with walls
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {

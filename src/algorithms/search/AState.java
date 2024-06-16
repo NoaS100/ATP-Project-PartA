@@ -2,8 +2,8 @@ package algorithms.search;
 
 public abstract class AState implements Comparable<AState> {
     protected String state; // representing the state in the game
-    protected double cost; // this state was created from
-    protected AState cameFrom; // cost to get to this state
+    protected double cost; // cost to get to this state
+    protected AState cameFrom; // this state was created from
 
     /***
      * constructor for AState. represents a current state in the game
