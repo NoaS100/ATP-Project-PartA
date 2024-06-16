@@ -12,6 +12,11 @@ public class Maze {
     private int[][] mazeArray;
     private int rows, columns;
 
+    /***
+     * Maze Constructor
+     * @param rows
+     * @param columns
+     */
     public Maze(int rows, int columns) {
         this.startPosition = null;
         this.endPosition = null;
@@ -21,33 +26,51 @@ public class Maze {
     }
 
 
+    /***
+     *
+     * @return number of rows of the maze
+     */
     public int getRows() {
         return rows;
     }
 
+    /***
+     *
+     * @return number of Columns of the maze
+     */
     public int getColumns() {
         return columns;
     }
 
+    /***
+     *
+     * @return the startPosition
+     */
     public Position getStartPosition() {
         return startPosition;
     }
 
+    /***
+     *
+     * @return the endPosition
+     */
     public Position getGoalPosition() {
         return endPosition;
     }
 
+    /***
+     * randomizing a starting point
+     */
     public void makeStartPosition() {
         if (startPosition == null && rows > 0 && columns > 0) {
             startPosition = chooseRandomly();
         }
     }
 
-    public void setStartPosition(Position position) {
-        startPosition = position;
-    }
 
-
+    /***
+     * randomizing an ending point
+     */
     public void makeGoalPosition() {
         if (endPosition == null && rows > 0 && columns > 0) {
             boolean flag = true;
@@ -68,24 +91,37 @@ public class Maze {
         }
     }
 
-    public void setEndPosition(Position position) {
-        endPosition = position;
-    }
-
+    /***
+     *
+     * @return maze Array
+     */
     public int[][] getMazeArray() {
         return mazeArray;
     }
 
+    /***
+     * changing the maze Array
+     * @param rowIndex
+     * @param columnIndex
+     * @param newVal
+     */
     public void setMazeArray(int rowIndex, int columnIndex, int newVal) {
         mazeArray[rowIndex][columnIndex] = newVal;
     }
 
+    /***
+     * hanging the maze Array
+     * @param newMazeArray
+     */
     public void setMazeArray(int[][] newMazeArray) {
         this.mazeArray = newMazeArray;
     }
 
 
-
+    /***
+     * randomizing position
+     * @return random Position
+     */
     public Position chooseRandomly() {
         Random random = new Random();
         int cases = random.nextInt(4);
@@ -113,19 +149,32 @@ public class Maze {
         return randomlyPos;
     }
 
+    /***
+     *
+     * @param position
+     * @return
+     */
     public boolean checkPosition(Position position) {
         int rowIndex = position.getRowIndex();
         int columnIndex = position.getColumnIndex();
         return checkPosition(rowIndex, columnIndex);
     }
 
+    /***
+     * checking the randomized position boundaries and if it is empty way
+     * @param rowIndex
+     * @param columnIndex
+     * @return
+     */
     public boolean checkPosition(int rowIndex, int columnIndex) {
         return rowIndex < getRows() && rowIndex > -1 &&
                 columnIndex < getColumns() && columnIndex > -1 &&
                 mazeArray[rowIndex][columnIndex] == 0;
     }
 
-
+    /***
+     * printing the maze
+     */
     public void print() {
         if (startPosition != null && endPosition != null) {
             char[][] charMazeArr = new char[rows][columns];
