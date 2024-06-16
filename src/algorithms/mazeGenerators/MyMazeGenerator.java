@@ -89,6 +89,13 @@ public class MyMazeGenerator extends AMazeGenerator {
             Ncount++;
         return Ncount;}
 
+    /***
+     * checking if we can pave a path by checking boundaries and if there is a wall- then we can break the wall
+     * @param x
+     * @param y
+     * @param maze
+     * @param frontiers
+     */
     private void addValidPath(int x, int y, Maze maze, List<Position> frontiers) {
         if (x >= 0 && x < maze.getRows() && y >= 0 && y < maze.getColumns() && maze.getMazeArray()[x][y] == WALL){
             frontiers.add(new Position(x, y));
