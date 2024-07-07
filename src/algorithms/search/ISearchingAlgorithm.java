@@ -17,7 +17,7 @@ public interface ISearchingAlgorithm {
 
     /***
      get name of the algorithm
-     * @return the name of algorithm
+     * @return name of algorithm
      */
     String getName();
 }
